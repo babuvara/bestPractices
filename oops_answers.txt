@@ -1,0 +1,117 @@
+1. what is an interface?
+			-> 100% abstract class
+			-> we cannot create child class for interface
+			-> not definition for this method
+			
+			The interface in Java is a mechanism to achieve abstraction.
+			An interface in Java is a contract of a class. 
+			It may have static, constants, and abstract methods,and default methods.
+			It is also used for multiple implementation in Java (java does not support multiple inheritance)
+			Interfaces are also used as marker interface 
+		
+		
+2. why interfaces are called as a contract
+			Interfaces are contracts between implementers and consumers.
+			Consumers: Programmers using a class that is implementing a interface.
+			The interface specifies the signature of methods,
+			1. But not the semantics
+			2. Missing Class invariants, pre and post conditions etc..
+			Example LayeredLibrary, IRepository, Producer-consumer, IBuffer
+			3. The interface IRepository defines an contract between the upper layers (GUI etc.,)
+			and the lower layers (data access layer like database,file,etc.,) in the application
+			
+			A contract is a promise
+			A class that implements an interface makes a promise, that it will realize (overriding) the abstract method of the interface.
+			The user of a class, to know the list of services provided by objects of the class, can check all the interfaces implemented by the class.
+			
+			An interface is a contract, when an object is an instance of a class.
+		  
+		
+3. what are null interfaces
+			It is an empty interfaces(no field or methods).
+			Example of null interfaces are java.io. serializable,java.lang.cloneable and java.rmi.remote interfaces.
+
+4. what are marker interfaces
+		   serialization interfaces is a classic example for marker interfaces.
+		   when any object that implemented java.io.serializable,the JVM know that it is  supposed to treat it is a special way.
+		   Example:javax.servlet.Servlet( marker but,not a null interface )
+		   marker interfaces are very special interfaces ,objects of classes that implement these interfaces are treated in a special way by the JVM.
+		   all null interfaces are markers.
+           but all markers are not null interfaces.
+		
+5. give some examples for marker interfaces
+		  Cloneable interface : Cloneable interface is present in java. lang package. ...
+		  Serializable interface : Serializable interface is present in java.io package. ...
+	      Remote interface : Remote interface is present in java.rmi package
+    
+          Example1:
+          We have a class with the name Student which implements the marking interface Cloneable.
+          In the main method we are trying to create an object of the Student class(firstObject), and clone it by using the clone() method(secondObject).
+          The class Student has two instance variables name, and age.
+          If in the firstObject value for name is "Elonmusk", and value for age is 30 then the cloned object(secondObject) will also have the same values for name, and age
+		 
+6. what is default method in interfaces
+		→ Java 8 allows default methods to be added to Interfaces with default implementation.
+        → Implementing Classes need not implement default methods.
+        Default methods are not abstract methods(they are concrete methods).
+        The logic provided in the default method is shared between all the implementers of the interface.
+        Default methods help with backward compatibility.
+        We can add new methods to Interfaces without breaking existing implementations.
+			
+7. diff between interface and abstract class
+		 Interfaces:
+			-Has no concrete method (exception default methods)
+			-Has no constructors
+			-A class can implement multiple interfaces
+			-Implementer class is instantiated, interface is not instantiated
+		 Abstract Class:
+			-Has concrete method
+			-Has constructors
+			-extend from one base class (or) one abstract class
+			-child class is instantiated and then parent class is also instantiated
+		
+8. should abstract classes have abstract methods 
+			Abstract class may or may not include abstract methods. It is not compulsory to have abstract method in an abstract class.
+			
+9. is it possible to create objects for abstract classes
+
+			 We cannot create objects of an abstract class. To implement features of an abstract class, we inherit subclasses from it and create objects of the subclass. A subclass must override all abstract methods of an abstract class. When an Object is created for sub class, first an Object for the parent class is created. The reference of the parent Object is available to the child through the super reference.
+             By creating objects for the sub class Object for the abstract class is also created.
+			 
+			 
+10. Do abstract classes have constructors?
+			 YES
+			 
+			 
+11. If it is not possible to create an object for an abstract class, then why do they have constructors ?
+			we cannot create an object for an abstract class directly.
+			we can create an object for the sub class which is concrete.
+			The constructor of the abstract class is invoked, before running the constructor of the sub class. 
+			Hence we must have a constructor in the abstract classes
+			
+			
+12. When to use interfaces ?
+        * Interfaces are used as abstractions of the implementing classes.
+        * Interfaces are used as contracts, and also as markers.
+        * Interface are also used for achieving multiple implementations
+        * Specify the behaviour of a particular data type, but not concerned about who implements its behaviour.
+    
+    
+13. When to use abstract classes ?
+        * An abstract class is used if you want to provide a common, implemented functionality among all the implementations of the component. 
+        * Abstract classes will allow you to partially implement your class, whereas interfaces would have no implementation for any members whatsoever.
+    
+    
+14. Can a class have only private constructors ?
+        Yes, 
+        check ScoreBoard.java
+
+        
+15. How to create objects for classes with private constructors ?
+        * With the help of factory methods
+        * A factory method is a static method that creates a new object and returns it.
+        Refer ScoreBoard.java createObject() method.
+        * Private constructors cannot be called from outside the class but another method from within the same class.
+        * The factory method is implemented in the class that has the private constructors.
+        * So,the factory method can call the private constructor.
+        * To call the factory method from outside the class without an object reference the factory method must be static.
